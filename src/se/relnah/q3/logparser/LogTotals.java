@@ -1,3 +1,4 @@
+package se.relnah.q3.logparser;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
