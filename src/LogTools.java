@@ -1,7 +1,15 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.util.Date;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Vector;
 
 public class LogTools {
 
@@ -109,7 +117,8 @@ public static final String WEAPONLINK = new String("LINKWEAP"); // The text used
     for (int iLoop = 0;iLoop < 8;iLoop++) {
       if ((aColours != null) && (aColours.length > iLoop)) { sRep = sBefore + aColours[iLoop] + sMiddle; }
       else { sRep = new String(); }
-      sUser = replaceAll(sUser,"^" + iLoop,sRep);
+      //Use sRep to have font colors. Setting "" to remove colors
+      sUser = replaceAll(sUser,"^" + iLoop,"");
     }
     if (aColours.length > 0) { 
       iStart = sUser.indexOf("^X");
@@ -202,7 +211,8 @@ public static final String WEAPONLINK = new String("LINKWEAP"); // The text used
           sLine = brIn.readLine();
         }
       } else {
-        throw new IllegalArgumentException("File " + fIn.getPath() + " is empty");
+        //throw new IllegalArgumentException("File " + fIn.getPath() + " is empty");
+          System.out.println("File " + fIn.getPath() + " is empty");
       }
     } else {
       throw new FileNotFoundException("File " + fIn.getPath() + " doesn't exist");

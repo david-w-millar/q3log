@@ -1,7 +1,12 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.util.Date;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 public class LogParser {
 
@@ -199,7 +204,8 @@ private String[] sWeaponsList;
           brIn.close();
           bwOut.close();
         } else {
-          throw new IOException("Input file is empty");
+          //throw new IOException("Input file is empty");
+            System.out.println("Input file is empty");
         }
       } else {
         throw new IllegalArgumentException("Output file hasn't been set");
