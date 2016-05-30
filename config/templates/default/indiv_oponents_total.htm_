@@ -1,12 +1,10 @@
-  <TR>
-    <TH COLSPAN=2>Average</TH>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Kills"></TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Deaths"></TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Efficiency">%</TD>
-    <TD>
-      <TABLE WIDTH=100%>
-      <TH COLSPAN=2>Totals</TH>
-<Q3LOG TYPE="Section" NAME="Weapons">
-      </TABLE>
-    </TD>
-  </TR>
+<div class="row">
+    <div class="col-md-3"><strong>Average</strong></div>
+    <div class="col-md-1"><Q3LOG TYPE="Value" NAME="Kills"></div>
+    <div class="col-md-1"><Q3LOG TYPE="Value" NAME="Deaths"></div>
+    <div class="col-md-1"><Q3LOG TYPE="Value" NAME="Efficiency">%</div>
+    <div class="col-md-6">
+      <strong>Totals</strong>
+      <Q3LOG TYPE="Section" NAME="Weapons">
+    </div>
+</div>

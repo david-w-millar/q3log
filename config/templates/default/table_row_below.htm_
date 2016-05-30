@@ -1,12 +1,14 @@
-  <TR>
-    <TD><FONT COLOR="RED"><Q3LOG TYPE="Value" NAME="Member"></FONT></TD>
-    <TD>
+<div class="row">
+    <div class="col-md-1">
+        <FONT COLOR="RED"><Q3LOG TYPE="Value" NAME="Member"></FONT>
+    </div>
+    <div class="col-md-3">
       <Q3LOG TYPE="Value" NAME="User_Link"><Q3LOG TYPE="Value" NAME="User"></A>
-    </TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Kills"></TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Deaths"></TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Suicides"></TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="KillRatio"></TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Rank"></TD>
-    <TD ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Efficiency">%</TD>
-  </TR>
+    </div>
+    <div class="col-md-2"><Q3LOG TYPE="Value" NAME="Kills"></div>
+    <div class="col-md-2"><Q3LOG TYPE="Value" NAME="Deaths"></div>
+    <div class="col-md-1"><Q3LOG TYPE="Value" NAME="Suicides"></div>
+    <div class="col-md-1"><Q3LOG TYPE="Value" NAME="KillRatio"></div>
+    <div class="col-md-1"><Q3LOG TYPE="Value" NAME="Rank"></div>
+    <div class="col-md-1"><Q3LOG TYPE="Value" NAME="Efficiency">%</div>
+</div>

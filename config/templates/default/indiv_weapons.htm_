@@ -1,5 +1,5 @@
-        <TR>
-          <TD WIDTH=50%><Q3LOG TYPE="Value" NAME="Weapon">:</TD>
-          <TD WIDTH=25% ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Kills"></TD>
-          <TD WIDTH=25% ALIGN=RIGHT><Q3LOG TYPE="Value" NAME="Percent">%</TD>
-        </TR>
+<div class="row">
+    <div class="col-md-6"><Q3LOG TYPE="Value" NAME="Weapon">:</div>
+    <div class="col-md-3"><Q3LOG TYPE="Value" NAME="Kills"></div>
+    <div class="col-md-3"><Q3LOG TYPE="Value" NAME="Percent">%</div>
+</div>
