@@ -1,7 +1,18 @@
 image: maven:3-jdk-8
 
+stages:
+- test
+- deploy
+
 test:
+  stage: test
   script: "mvn clean install -B"
 
-production:
-  script: "mvn deploy -B"
+deploy:
+  stage: deploy
+  script: "mvn clean verify -B"
+  artifacts:
+    paths:
+    - target/*.jar
+  only:
+    - tags
