@@ -30,7 +30,6 @@ public class LogParser {
 private LogTools myTools = new LogTools(); // Create a LogTools object to use
 public static final String WEAPONLINK = new String(LogTools.WEAPONLINK); // Linked weapon text
 // The following contains all the different lines that are defined as System (feel free to add to it for other mods)
-public static final int INDENT = 7; // Indent in Logfile (usually 7)
 public static final String[] TXTSYSTEM = {
   "InitGame",
   "Map",
@@ -165,7 +164,7 @@ private String[] sWeaponsList;
   //  Date          :   12th September 2002
   //
   //
-  public Hashtable execute(boolean bRead) throws FileNotFoundException,IOException,IllegalArgumentException {
+  public Hashtable execute(boolean bRead, int indent) throws FileNotFoundException,IOException,IllegalArgumentException {
   BufferedReader brIn;
   BufferedWriter bwOut;
   String sLine = new String();
@@ -179,7 +178,7 @@ private String[] sWeaponsList;
           bwOut = new BufferedWriter(new FileWriter(fOut.getPath(),true));
           while (sLine != null) {
             if (!sLine.equals("")) {
-              sLine = sLine.substring(INDENT);
+              sLine = sLine.substring(indent);
               iType = getLineType(sLine);
               if (iType == SYSTEM) {
                 // Do nothing
@@ -216,30 +215,30 @@ private String[] sWeaponsList;
     }
     return htKills;
   }
-  public Hashtable execute(String sLocOutFile,String sLocInFile) throws FileNotFoundException,IOException,IllegalArgumentException {
+  public Hashtable execute(String sLocOutFile,String sLocInFile, int indent) throws FileNotFoundException,IOException,IllegalArgumentException {
     if (myTools.checkFile(sLocInFile)) { fIn = new File(sLocInFile); }
     if (myTools.checkString(sLocOutFile)) { fOut = new File(sLocOutFile); }
     else { throw new IllegalArgumentException("Output File Invalid"); }
-    return execute(false);
+    return execute(false, indent);
   }
-  public Hashtable execute(String sLocOutFile) throws FileNotFoundException,IOException,IllegalArgumentException {
+  public Hashtable execute(String sLocOutFile, int indent) throws FileNotFoundException,IOException,IllegalArgumentException {
     if (myTools.checkString(sLocOutFile)) { fOut = new File(sLocOutFile); }
     else { throw new IllegalArgumentException("Output File Invalid"); }
-    return execute(false);
+    return execute(false, indent);
   }
-  public Hashtable execute(String sLocOutFile,String sLocInFile,boolean bLocRead) throws FileNotFoundException,IOException,IllegalArgumentException {
+  public Hashtable execute(String sLocOutFile,String sLocInFile,boolean bLocRead, int indent) throws FileNotFoundException,IOException,IllegalArgumentException {
     if (myTools.checkFile(sLocInFile)) { fIn = new File(sLocInFile); }
     if (myTools.checkString(sLocOutFile)) { fOut = new File(sLocOutFile); }
     else { throw new IllegalArgumentException("Output File Invalid"); }
-    return execute(bLocRead);
+    return execute(bLocRead, indent);
   }
-  public Hashtable execute(String sLocOutFile,boolean bLocRead) throws FileNotFoundException,IOException,IllegalArgumentException {
+  public Hashtable execute(String sLocOutFile,boolean bLocRead, int indent) throws FileNotFoundException,IOException,IllegalArgumentException {
     if (myTools.checkString(sLocOutFile)) { fOut = new File(sLocOutFile); }
     else { throw new IllegalArgumentException("Output File Invalid"); }
-    return execute(bLocRead);
+    return execute(bLocRead, indent);
   }
-  public Hashtable execute() throws FileNotFoundException,IOException,IllegalArgumentException {
-    return execute(false);
+  public Hashtable execute(int indent) throws FileNotFoundException,IOException,IllegalArgumentException {
+    return execute(false, indent);
   }
   
 

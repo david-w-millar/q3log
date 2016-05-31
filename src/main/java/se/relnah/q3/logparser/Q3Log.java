@@ -41,7 +41,7 @@ private LogParser myParser;
 private LogTotals myTotals;
 
 // The program version
-public static final String PROGVER = new String("2.3"); 
+public static final String PROGVER = new String("2.4"); 
 // The programs name
 public static final String PROGNAME = new String("Q3Log"); 
 // The programs description
@@ -49,7 +49,7 @@ public static final String PROGDESC = new String("Quake 3 Arena Stats Generator"
 // Full program info
 public static final String PROGFULL = new String(PROGNAME + " v" + PROGVER + " - " + PROGDESC); 
 // Program homepage
-public static final String PROGURL = new String("http://www.wilf.co.uk/"); 
+public static final String PROGURL = new String("https://gitlab.com/relnah/Q3Log"); 
 public static final String WEAPONLINK = new String(LogTools.WEAPONLINK);
 // The following arrays are defined for mod types, and contain the weapons used in that mod
 public static final String[] TXTQ3WEAPONS = {
@@ -250,7 +250,6 @@ public static final String[] TXTUT3WEAPONSLINK = {
   "Unknown - 29",
   "Unknown - 30",
 };
-public static final int INDENT = 7; // Indent in Logfile (usually 7)
 
 // Command line argument strings
 public static final String ARGHELP = new String("HELP"); // Help argument
@@ -340,6 +339,7 @@ public static final String STATICTOTAL = new String("table_row_total.htm_"); // 
 public static final String PROPSTATIC = new String("Templates"); // Static property name (for conf file)
 public static final String PROPTARGET = new String("Target"); // Target property name (for conf file)
 public static final String PROPCUTOFF = new String("Cutoff"); // Cutoff property name (for conf file)
+public static final String PROPINDENT = new String("Indent"); // Indent property name (for conf file)
 public static final String PROPTOPWEAPONS = new String("TopWeapons"); // How many of the top weapons to list (for the conf file)
 public static final String PROPSORT = new String("Sort"); // Default field to sort on (for conf file)
 public static final String PROPDIRECT = new String("Direct"); // Default direction to sort (for conf file)
@@ -432,6 +432,7 @@ private Hashtable htFun = new Hashtable();
 
 // The following int's hold value from the conf file
 private int iCutOff = 0;
+private int iIndent = 0;
 private int iSort = 0;
 private int iAllSort = 0;
 private int iTopWeapons = 0;
@@ -518,7 +519,7 @@ private boolean bLinked = false;
   private boolean addLog(String sIn,String sOut,boolean bRead,boolean bDelete) throws FileNotFoundException,IOException {
   File fInput = new File(sIn);
   boolean bReturn = false;
-    myParser.execute(sOut,fInput.getPath(),bRead);
+    myParser.execute(sOut,fInput.getPath(),bRead, iIndent);
     if (bDelete) { bReturn = fInput.delete(); }
     else { bReturn = true; }
     return bReturn;
@@ -541,6 +542,7 @@ private boolean bLinked = false;
       else { throw new IllegalArgumentException(PROPSTATIC + " needs to be set in the config file"); }
       sTarget = prProp.getProperty(PROPTARGET,"_blank");
       iCutOff = new Integer(prProp.getProperty(PROPCUTOFF,"0")).intValue();
+      iIndent = new Integer(prProp.getProperty(PROPINDENT,"7")).intValue();
       iTopWeapons = new Integer(prProp.getProperty(PROPTOPWEAPONS,"0")).intValue();
       iSort = new Integer(prProp.getProperty(PROPSORT,"2")).intValue();
       bDirect = new Boolean(prProp.getProperty(PROPDIRECT,"true")).booleanValue();
