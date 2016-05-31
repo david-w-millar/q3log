@@ -118,8 +118,7 @@ public static final String WEAPONLINK = new String("LINKWEAP"); // The text used
     for (int iLoop = 0;iLoop < 8;iLoop++) {
       if ((aColours != null) && (aColours.length > iLoop)) { sRep = sBefore + aColours[iLoop] + sMiddle; }
       else { sRep = new String(); }
-      //Use sRep to have font colors. Setting "" to remove colors
-      sUser = replaceAll(sUser,"^" + iLoop,"");
+      sUser = replaceAll(sUser,"^" + iLoop,sRep);
     }
     if (aColours.length > 0) { 
       iStart = sUser.indexOf("^X");
