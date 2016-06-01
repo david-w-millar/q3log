@@ -2,6 +2,9 @@ package se.relnah.q3.logparser;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LogTotals {
 
 /*
@@ -21,6 +24,9 @@ public class LogTotals {
     
 */
 
+private Logger LOG = LoggerFactory.getLogger(LogTotals.class);
+
+    
 // The following int's are positions in arrays for certain values to go
 public static final int KILLS = 0;
 public static final int DEATHS = 1;

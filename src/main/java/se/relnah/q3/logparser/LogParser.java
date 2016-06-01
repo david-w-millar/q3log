@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LogParser {
 
 /*
@@ -26,7 +29,7 @@ public class LogParser {
   Copyright Stuart Butcher (stu@wilf.co.uk) 2002
     
 */
-
+private Logger LOG = LoggerFactory.getLogger(LogParser.class);  
 private LogTools myTools = new LogTools(); // Create a LogTools object to use
 public static final String WEAPONLINK = new String(LogTools.WEAPONLINK); // Linked weapon text
 // The following contains all the different lines that are defined as System (feel free to add to it for other mods)
@@ -205,7 +208,7 @@ private String[] sWeaponsList;
           bwOut.close();
         } else {
           //throw new IOException("Input file is empty");
-            System.out.println("Input file is empty");
+            LOG.info("Input file is empty");
         }
       } else {
         throw new IllegalArgumentException("Output file hasn't been set");

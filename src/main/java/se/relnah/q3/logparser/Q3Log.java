@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -15,6 +14,9 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Vector;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Q3Log {
 
@@ -38,6 +40,9 @@ public class Q3Log {
     
 */
 
+private static Logger LOG = LoggerFactory.getLogger(Q3Log.class);    
+    
+    
 // The next few lines are creating the tool objects needed by Q3Log
 private LogTools myTools = new LogTools();
 private LogParser myParser;
@@ -616,8 +621,7 @@ private boolean bLinked = false;
         try {
             path = Paths.get(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
         sStatic = path.getParent().toString() + "/" + sStatic;
         
@@ -1174,7 +1178,7 @@ private boolean bLinked = false;
         addLog(aLog[iLoop],sInput,false,bDelete);
       }
     } catch (FileNotFoundException e) {
-      System.out.println("The input file " + aLog[iLoop] + " was not found");
+      LOG.error("The input file " + aLog[iLoop] + " was not found", e);
     }
   }
   
@@ -1238,7 +1242,7 @@ private boolean bLinked = false;
         throw new IllegalArgumentException("Invalid Type - " + sType);
       }
     } catch (FileNotFoundException e) {
-      System.out.println("The log file " + sALog + " was not found");
+      LOG.error("The log file " + sALog + " was not found", e);
     }
     if (bGotIt) {
       outputLog(sOutDir,sServer);
@@ -1341,17 +1345,12 @@ private boolean bLinked = false;
           bFailed = true;
         }
       } catch (Exception e) {
-        if (e.getClass() == eIAETest.getClass()) {
-         System.out.println(e.getMessage()); 
-        } else {
-          System.out.println("Exception - " + e.toString());
-          e.printStackTrace();
-        }
+         LOG.error(e.getMessage(), e); 
       }
     } else {
       bFailed = true;
     }
-    if (bFailed) { System.out.println(sError); }
+    if (bFailed) { LOG.error(sError); }
   }
   
 }

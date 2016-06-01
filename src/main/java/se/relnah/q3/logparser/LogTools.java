@@ -12,6 +12,9 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LogTools {
 
 /*
@@ -29,6 +32,7 @@ public class LogTools {
   Copyright Stuart Butcher (stu@wilf.co.uk) 2002
     
 */
+private Logger LOG = LoggerFactory.getLogger(LogTools.class);
 
 // The following Strings are globally used variables defined once here
 public static final String LINESEP = System.getProperty("line.separator"); // The line seperator for this system
@@ -212,7 +216,7 @@ public static final String WEAPONLINK = new String("LINKWEAP"); // The text used
         }
       } else {
         //throw new IllegalArgumentException("File " + fIn.getPath() + " is empty");
-          System.out.println("File " + fIn.getPath() + " is empty");
+          LOG.info("File " + fIn.getPath() + " is empty");
       }
     } else {
       throw new FileNotFoundException("File " + fIn.getPath() + " doesn't exist");
