@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -603,32 +606,45 @@ private boolean bLinked = false;
   //  Date          :   13th September 2002
   //
   //
-  private void readStatic() throws IllegalArgumentException,FileNotFoundException,IOException {
-  File fIn;
-    sStatic = myTools.checkDir(sStatic);
-    fIn = new File(sStatic + STATICIM);
-    vIndivMain = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICIOBELOW);
-    vIndivOponBelow = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICIOABOVE);
-    vIndivOponAbove = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICIW);
-    vIndivWeap = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICIWT);
-    vIndivTWea = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICIOT);
-    vIndivTOpo = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICTABLE);
-    vTableMain = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICTABLEWEAPONS);
-    vTableWeapons = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICROWABOVE);
-    vTableRowsAbove = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICROWBELOW);
-    vTableRowsBelow = myTools.readFile(fIn);
-    fIn = new File(sStatic + STATICTOTAL);
-    vTableTRow = myTools.readFile(fIn);
-  }
+    private void readStatic() throws IllegalArgumentException, FileNotFoundException, IOException {
+
+        File fIn;
+        
+        //Template path is relative to executing jar
+        //URL url = this.getClass().getResource(this.getClass().getSimpleName() + ".class");
+        Path path = null;
+        try {
+            path = Paths.get(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        sStatic = path.getParent().toString() + "/" + sStatic;
+        
+        sStatic = myTools.checkDir(sStatic);
+        fIn = new File(sStatic + STATICIM);
+        vIndivMain = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICIOBELOW);
+        vIndivOponBelow = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICIOABOVE);
+        vIndivOponAbove = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICIW);
+        vIndivWeap = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICIWT);
+        vIndivTWea = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICIOT);
+        vIndivTOpo = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICTABLE);
+        vTableMain = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICTABLEWEAPONS);
+        vTableWeapons = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICROWABOVE);
+        vTableRowsAbove = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICROWBELOW);
+        vTableRowsBelow = myTools.readFile(fIn);
+        fIn = new File(sStatic + STATICTOTAL);
+        vTableTRow = myTools.readFile(fIn);
+    }
 
   //  Returns the parameter value from the current tag
   //
