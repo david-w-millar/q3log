@@ -38,14 +38,15 @@ public class LogTools {
     private Logger LOG = LoggerFactory.getLogger(LogTools.class);
 
     // The following Strings are globally used variables defined once here
-    
+
     // The line seperator for this system
     public static final String LINESEP = System.getProperty("line.separator");
-    
+
     // The directory seperator for this system
     public static final String DIRSEP = System.getProperty("file.separator");
-    
-    // The text used to specifiy that a weapon in the weapons list should be linked with another one
+
+    // The text used to specifiy that a weapon in the weapons list should be
+    // linked with another one
     public static final String WEAPONLINK = new String("LINKWEAP");
 
     // Returns true if the passed file is valid, false if it isnt
@@ -145,36 +146,40 @@ public class LogTools {
         if (aColours.length > 0) {
             sUser = endHtmlTags(sUser, sMarker, sEndTag);
         }
-        
+
         return sUser;
     }
 
     /**
      * Close open HTML tags using special marker string
-     * @param sUser User nick name
-     * @param sMarker Special string marking end of opening tag
-     * @param sEndTag End tag
+     * 
+     * @param sUser
+     *            User nick name
+     * @param sMarker
+     *            Special string marking end of opening tag
+     * @param sEndTag
+     *            End tag
      * @return String with closed HTML tags
      */
     private String endHtmlTags(String sUser, String sMarker, String sEndTag) {
 
-        //<span style='color: Red;'>^#[ADM]<span style='color: Blue;'>^#Omni
+        // <span style='color: Red;'>^#[ADM]<span style='color: Blue;'>^#Omni
         while (sUser.contains(sMarker)) {
             int iOpenTagEnd = sUser.indexOf(sMarker);
             String sBegin = sUser.substring(0, iOpenTagEnd);
-            
-            //Skip marker
+
+            // Skip marker
             String sAfterOpenTag = sUser.substring(iOpenTagEnd + sMarker.length());
             int iNextOpenTagStart = sAfterOpenTag.indexOf('<');
-            
-            //Last opening tag is closed at end of nick
+
+            // Last opening tag is closed at end of nick
             if (iNextOpenTagStart == -1) {
                 iNextOpenTagStart = sAfterOpenTag.length();
             }
-            
+
             String sTextInTag = sAfterOpenTag.substring(0, iNextOpenTagStart);
             String sAfterEndTag = sAfterOpenTag.substring(iNextOpenTagStart);
-            
+
             sUser = sBegin + sTextInTag + sEndTag + sAfterEndTag;
         }
         return sUser;
