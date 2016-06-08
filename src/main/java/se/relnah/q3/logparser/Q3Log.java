@@ -15,6 +15,8 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Vector;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +52,7 @@ public class Q3Log {
     private LogTotals myTotals;
 
     // The program version
-    public static final String PROGVER = new String("2.4");
+    public static final String PROGVER = getApplicationVersion();
     // The programs name
     public static final String PROGNAME = new String("Q3Log");
     // The programs description
@@ -1560,5 +1562,24 @@ public class Q3Log {
             LOG.error(sError);
         }
     }
+    
+    /**
+     * Get application version
+     * @return (String)
+     */
+    private static String getApplicationVersion() {
+        String appVersion = new String();
+
+        try {
+            appVersion = new Manifest(Q3Log.class.getResourceAsStream("/META-INF/MANIFEST.MF"))
+            .getMainAttributes()
+            .get(Attributes.Name.IMPLEMENTATION_VERSION).toString();
+        } catch (IOException e) {
+            LOG.error(e.getMessage(), e);
+        }
+        
+        return appVersion;
+    }
+    
 
 }

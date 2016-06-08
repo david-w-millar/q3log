@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>se.relnah.q3.logparser</groupId>
     <artifactId>Q3Log</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.4.2</version>
     <name>Q3 Log Parser</name>
-    <description>Parses server Quake 3 server log and produces statistics</description>
+    <description>Parses Quake 3 server log and produces statistics</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -36,6 +36,7 @@
                     <archive>
                         <manifest>
                             <mainClass>se.relnah.q3.logparser.Q3Log</mainClass>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
                 </configuration>
@@ -69,6 +70,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -96,4 +107,7 @@
     <scm>
         <url>https://gitlab.com/relnah/Q3Log</url>
     </scm>
+    <organization>
+        <name>Relnah</name>
+    </organization>
 </project>
